@@ -73,7 +73,9 @@
       </div>
 
       <div class="form__group">
-        <div class="form__group__heading">Number of employees who made more than $150,000 last year</div>
+        <div class="form__group__heading">
+          Number of employees who made more than $150,000 last year
+        </div>
         <div class="form__slideContainer">
           <input
             type="range"
@@ -107,8 +109,30 @@
         </div>
       </div>
 
-      <button>Submit</button>
+      <div class="form__group">
+        <div class="form__group__heading">Select a 401GO plan:</div>
+        <select name="planSelected" id="planSelected">
+          <option value="GO-Starter">GO-Starter</option>
+          <option value="GO-Plus">GO-Plus</option>
+          <option value="GO-Premier" selected>GO-Premier</option>
+        </select>
+      </div>
+
+      <!-- <button>Submit</button> -->
+      <div class="form__output">
+        <div class="form__output__group">
+          <div>Total annual cost:</div>
+          <div id="totalAnnualCost">$1,703.40</div>
+        </div>
+
+        <div class="form__output__group">
+          <div>Total cost after tax credits:</div>
+          <div>$9393</div>
+        </div>
+      </div>
     </form>
+
+    <div>* Based on 60% employee participation rate</div>
 
     <script src="calculator.js"></script>
   </body>

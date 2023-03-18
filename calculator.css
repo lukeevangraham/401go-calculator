@@ -3,3 +3,10 @@
 
 .form__slideContainer input {
   width: 500px; }
+
+.form__output {
+  display: flex;
+  gap: 3rem; }
+  .form__output__group {
+    display: flex;
+    gap: 1rem; }
