@@ -1,5 +1,7 @@
+// ALL MY SELECTORS
 const form = document.querySelector("#calcForm");
 const totalAnnualCost = document.querySelector("#totalAnnualCost");
+const costAfterTaxCredits = document.querySelector("#costAfterTaxCredits");
 const amountOfW2Employees_input = document.querySelector(
   "#amountOfW2Employees"
 );
@@ -15,9 +17,16 @@ const amountOfHighEarners_value = document.querySelector(
   "#amountOfHighEarnersValue"
 );
 const planSelected = document.querySelector("#planSelected");
+const willOfferAutoEnrollment = document.querySelector(
+  "#willOfferAutoEnrollment"
+);
+const currentlyOffers401k = document.querySelector("#currentlyOffers401k");
 
+// FORMAT OUR NUMBERS
 function numberWithCommas(x) {
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  if (x > 999) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  } else return x;
 }
 
 // RESPOND TO SLIDER INPUT FOR NUMBER OF EMPLOYEES
@@ -36,11 +45,23 @@ amountOfHighEarners_input.addEventListener("input", (e) => {
 });
 
 // RESPOND TO FORM CHANGES
-
 form.addEventListener("change", (e) => {
   let participantMultiplier = 9;
 
   const employeesEntered = Number(amountOfW2Employees_input.value);
+  const highEarnersEntered = Number(amountOfHighEarners_value.value);
+  let totalCost;
+
+  const calculateTaxCredits = () => {
+    employeesEntered <= 50 &&
+    highEarnersEntered < employeesEntered &&
+    currentlyOffers401k.checked == false &&
+    willOfferAutoEnrollment.checked === true
+      ? (costAfterTaxCredits.textContent = "$0.00")
+      : (costAfterTaxCredits.textContent = totalCost);
+
+    totalAnnualCost.textContent = totalCost;
+  };
 
   if (employeesEntered > 50) {
     if (employeesEntered <= 100) {
@@ -56,29 +77,70 @@ form.addEventListener("change", (e) => {
     }
   }
 
+  // IF NOT OFFERING AUTO-ENROLLMENT WARN THEM
+  let insertedContent = document.querySelector(".insertedContent");
+  willOfferAutoEnrollment.checked === false
+    ? document
+        .querySelector("#autoEnrollment")
+        .insertAdjacentHTML(
+          "afterend",
+          `<div class='insertedContent'>Auto-enrollment will be required in the future and you can miss out on thousands of dollars by turning it off.  We strongly recommend setting up automatic enrollment.</div>`
+        )
+    : insertedContent
+    ? insertedContent.parentNode.removeChild(insertedContent)
+    : null;
+
+  // HANDLE THE SOLO K PLAN (Just one or zero employees, one or two owners (spouse could count as an owner))
+  const handleSoloKPlan = (callback) => {
+    if (employeesEntered <= 1 && amountOfOwners_value.value <= 2) {
+      totalAnnualCost.textContent = "$200.00";
+      costAfterTaxCredits.textContent = "$200.00";
+    } else {
+      callback();
+    }
+  };
+
+  // UPDATE TOTAL ANNUAL COST AND COST AFTER TAX CREDITS BASED ON SELECTED PLAN
   switch (planSelected.value) {
     case "GO-Premier":
-      totalAnnualCost.textContent = `$${numberWithCommas(
-        (
-          amountOfW2Employees_value.value * 0.6 * participantMultiplier +
-          348
-        ).toFixed(2)
-      )}`;
+      let calculatePremier = () => {
+        totalCost = `$${numberWithCommas(
+          (
+            amountOfW2Employees_value.value * 0.6 * participantMultiplier +
+            348
+          ).toFixed(2)
+        )}`;
+
+        calculateTaxCredits();
+      };
+
+      handleSoloKPlan(calculatePremier);
+
       break;
     case "GO-Plus":
-      totalAnnualCost.textContent = `$${numberWithCommas(
-        (
-          amountOfW2Employees_value.value * 0.6 * participantMultiplier +
-          348
-        ).toFixed(2)
-      )}`;
+      let calculatePlus = () => {
+        totalCost = `$${numberWithCommas(
+          (
+            amountOfW2Employees_value.value * 0.6 * participantMultiplier +
+            348
+          ).toFixed(2)
+        )}`;
+
+        calculateTaxCredits();
+      };
+
+      handleSoloKPlan(calculatePlus);
       break;
     case "GO-Starter":
-      totalAnnualCost.textContent = `$${numberWithCommas(
-        (amountOfW2Employees_value.value * 0.6 * 9).toFixed(
-          2
-        )
-      )}`;
+      let calculateStarter = () => {
+        totalCost = `$${numberWithCommas(
+          (amountOfW2Employees_value.value * 0.6 * 9).toFixed(2)
+        )}`;
+
+        calculateTaxCredits();
+      };
+
+      handleSoloKPlan(calculateStarter);
       break;
 
     default:
