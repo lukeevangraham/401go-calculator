@@ -49,25 +49,27 @@
             id="amountOfW2Employees"
             min="1"
             max="500"
+            value="25"
           />
           <div>
-            <output id="amountOfW2EmployeesValue">251</output>
+            <output id="amountOfW2EmployeesValue">25</output>
           </div>
         </div>
       </div>
 
       <div class="form__group">
-        <div class="form__group__heading">Number of owners</div>
+        <div class="form__group__heading">Number of owners employed by the company</div>
         <div class="form__slideContainer">
           <input
             type="range"
             name="amountOfOwners"
             id="amountOfOwners"
-            min="0"
-            max="50"
+            min="1"
+            max="20"
+            value="1"
           />
           <div>
-            <output id="amountOfOwnersValue">25</output>
+            <output id="amountOfOwnersValue">1</output>
           </div>
         </div>
       </div>
@@ -83,9 +85,10 @@
             id="amountOfHighEarners"
             min="0"
             max="500"
+            value="0"
           />
           <div>
-            <output id="amountOfHighEarnersValue">25</output>
+            <output id="amountOfHighEarnersValue">0</output>
           </div>
         </div>
       </div>
@@ -135,7 +138,7 @@
 
     <div>* Based on 60% employee participation rate</div>
 
-    <div>* This includes an additional $1,000 per employee for employer contributions.</div>
+    <!-- <div>* This includes an additional $1,000 per employee for employer contributions.</div> -->
 
     <script src="calculator.js"></script>
   </body>

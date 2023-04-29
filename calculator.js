@@ -32,6 +32,7 @@ function numberWithCommas(x) {
 // RESPOND TO SLIDER INPUT FOR NUMBER OF EMPLOYEES
 amountOfW2Employees_input.addEventListener("input", (e) => {
   amountOfW2Employees_value.textContent = e.target.value;
+  amountOfHighEarners_input.setAttribute("max", e.target.value);
 });
 
 // RESPOND TO SLIDER INPUT FOR NUMBER OF OWNERS
@@ -92,7 +93,7 @@ form.addEventListener("change", (e) => {
 
   // HANDLE THE SOLO K PLAN (Just one or zero employees, one or two owners (spouse could count as an owner))
   const handleSoloKPlan = (callback) => {
-    if (employeesEntered <= 1 && amountOfOwners_value.value <= 2) {
+    if (employeesEntered <= 1 && amountOfOwners_input.value <= 2) {
       totalAnnualCost.textContent = "$200.00";
       costAfterTaxCredits.textContent = "$200.00";
     } else {
@@ -105,10 +106,7 @@ form.addEventListener("change", (e) => {
     case "GO-Premier":
       let calculatePremier = () => {
         totalCost = `$${numberWithCommas(
-          (
-            amountOfW2Employees_value.value * 0.6 * participantMultiplier +
-            348
-          ).toFixed(2)
+          (employeesEntered * 0.6 * participantMultiplier * 12 + 348).toFixed(2)
         )}`;
 
         calculateTaxCredits();
@@ -120,10 +118,7 @@ form.addEventListener("change", (e) => {
     case "GO-Plus":
       let calculatePlus = () => {
         totalCost = `$${numberWithCommas(
-          (
-            amountOfW2Employees_value.value * 0.6 * participantMultiplier +
-            348
-          ).toFixed(2)
+          (employeesEntered * 0.6 * participantMultiplier * 12 + 348).toFixed(2)
         )}`;
 
         calculateTaxCredits();
@@ -134,7 +129,7 @@ form.addEventListener("change", (e) => {
     case "GO-Starter":
       let calculateStarter = () => {
         totalCost = `$${numberWithCommas(
-          (amountOfW2Employees_value.value * 0.6 * 9).toFixed(2)
+          (employeesEntered * 0.6 * 9 * 12).toFixed(2)
         )}`;
 
         calculateTaxCredits();
@@ -146,27 +141,4 @@ form.addEventListener("change", (e) => {
     default:
       break;
   }
-});
-
-document.querySelector("#calcForm").addEventListener("submit", (e) => {
-  e.preventDefault();
-  console.log(
-    "current 401(k): ",
-    document.querySelector('input[name="current401k"]:checked').value
-  );
-
-  console.log(
-    "past 3 years 401(k): ",
-    document.querySelector('input[name="past3Years401k"]:checked').value
-  );
-
-  console.log(
-    "will offer auto-enrollment: ",
-    document.querySelector('input[name="willOfferAutoEnrollment"]:checked')
-      .value
-  );
-
-  console.log("# of W2 Employees: ", amountOfW2Employees_input.value);
-  console.log("# of Owners: ", amountOfOwners_input.value);
-  console.log("# of High Earners: ", amountOfHighEarners_input.value);
 });
