@@ -1,3 +1,6 @@
+body {
+  font-family: "neue-haas-unica", Sans-serif; }
+
 .form {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -30,6 +33,13 @@
   .form__group {
     margin-bottom: 1rem;
     text-align: center; }
+    .form__group__dropdown {
+      background-color: orangered;
+      margin: 5rem; }
+      .form__group__dropdown #planSelected {
+        background-color: orangered;
+        margin: 5rem;
+        display: none; }
   .form__radio-input {
     display: none; }
   .form__radio-group {
@@ -46,8 +56,44 @@
     .form__radio-group label:has(input:checked) {
       background-color: #2aaae1;
       color: #eee; }
-  .form__slideContainer input {
-    width: 500px; }
+  .form__slideContainer {
+    margin-bottom: 1.6rem; }
+    .form__slideContainer input[type="range"] {
+      width: 500px;
+      outline: 0;
+      border: 0;
+      border-radius: 10px;
+      max-width: 100%;
+      margin: 0.5rem 0;
+      transition: box-shadow 0.2s ease-in-out; }
+      @media screen and (-webkit-min-device-pixel-ratio: 0) {
+        .form__slideContainer input[type="range"] {
+          overflow: hidden;
+          height: 22px;
+          -webkit-appearance: none;
+          background-color: #eee; }
+        .form__slideContainer input[type="range"]::-webkit-slider-runnable-track {
+          height: 22px;
+          -webkit-appearance: none;
+          color: #2aaae1;
+          transition: box-shadow 0.2s ease-in-out; }
+        .form__slideContainer input[type="range"]::-webkit-slider-thumb {
+          width: 22px;
+          -webkit-appearance: none;
+          height: 22px;
+          cursor: ew-resize;
+          background-color: #fff;
+          box-shadow: -340px 0 0 330px #2aaae1, inset 0 0 0 40px #2aaae1;
+          border-radius: 10px;
+          transition: box-shadow 0.2s ease-in-out;
+          position: relative; }
+        .form__slideContainer input[type="range"]:active::-webkit-slider-thumb {
+          background: #fff;
+          box-shadow: -340px 0 0 320px #2aaae1 inset 0 0 0 3px #2aaae1; }
+        .form__slideContainer input[type="range"]::-moz-range-progress {
+          background-color: #2aaae1; }
+        .form__slideContainer input[type="range"]::-moz-range-track {
+          background-color: #9a905d; } }
   .form__output {
     display: flex;
     gap: 3rem; }
