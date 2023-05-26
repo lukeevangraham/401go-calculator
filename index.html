@@ -70,9 +70,13 @@
       <div>
         <div class="form__group">
           <div class="form__group__heading">
-            Number of W2 employees (including owners)
+            <div>
+              Number of W2 employees
+              <span style="font-weight: 400">(including owners)</span>: &nbsp;
+            </div>
+            <output id="amountOfW2EmployeesValue">25</output>
           </div>
-          <div class="form__slideContainer">
+          <div class="form__group__slideContainer">
             <input
               type="range"
               name="amountOfW2Employees"
@@ -81,17 +85,15 @@
               max="500"
               value="25"
             />
-            <div>
-              <output id="amountOfW2EmployeesValue">25</output>
-            </div>
           </div>
         </div>
 
         <div class="form__group">
           <div class="form__group__heading">
-            Number of owners employed by the company
+            <div>Number of owners employed by the company: &nbsp;</div>
+            <output id="amountOfOwnersValue">1</output>
           </div>
-          <div class="form__slideContainer">
+          <div class="form__group__slideContainer">
             <input
               type="range"
               name="amountOfOwners"
@@ -100,17 +102,15 @@
               max="20"
               value="1"
             />
-            <div>
-              <output id="amountOfOwnersValue">1</output>
-            </div>
           </div>
         </div>
 
         <div class="form__group">
           <div class="form__group__heading">
-            Number of employees who made more than $150,000 last year
+            <div>Number of employees who made more than $150,000 last year: &nbsp;</div>
+            <output id="amountOfHighEarnersValue">0</output>
           </div>
-          <div class="form__slideContainer">
+          <div class="form__group__slideContainer">
             <input
               type="range"
               name="amountOfHighEarners"
@@ -119,9 +119,9 @@
               max="500"
               value="0"
             />
-            <div>
-              <output id="amountOfHighEarnersValue">0</output>
-            </div>
+
+              
+
           </div>
         </div>
       </div>
@@ -153,6 +153,11 @@
               No
             </label>
           </div>
+          <div class="finePrint hidden" id="enrollmentWarning">
+            Auto-enrollment will be required in the future and you can miss out
+            on thousands of dollars by turning it off. We strongly recommend
+            setting up automatic enrollment.
+          </div>
         </div>
 
         <div class="form__group">
@@ -180,11 +185,11 @@
         </div>
 
         <div>
-          <div>*Based on 60% employee participation rate</div>
+          <div class="finePrint">*Based on 60% employee participation rate</div>
 
           <!-- <div>* This includes an additional $1,000 per employee for employer contributions.</div> -->
 
-          <div>
+          <div class="finePrint">
             *There may be other factors in determining your eligibility for tax
             credits, you should consult with your accountant regarding your
             eligibility.

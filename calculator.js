@@ -21,6 +21,7 @@ const willOfferAutoEnrollment = document.querySelector(
   "#willOfferAutoEnrollment"
 );
 const currentlyOffers401k = document.querySelector("#currentlyOffers401k");
+const enrollmentWarning = document.querySelector("#enrollmentWarning");
 
 // FORMAT OUR NUMBERS
 function numberWithCommas(x) {
@@ -79,17 +80,9 @@ form.addEventListener("change", (e) => {
   }
 
   // IF NOT OFFERING AUTO-ENROLLMENT WARN THEM
-  let insertedContent = document.querySelector(".insertedContent");
   willOfferAutoEnrollment.checked === false
-    ? document
-        .querySelector("#autoEnrollment")
-        .insertAdjacentHTML(
-          "afterend",
-          `<div class='insertedContent'>Auto-enrollment will be required in the future and you can miss out on thousands of dollars by turning it off.  We strongly recommend setting up automatic enrollment.</div>`
-        )
-    : insertedContent
-    ? insertedContent.parentNode.removeChild(insertedContent)
-    : null;
+    ? enrollmentWarning.classList.remove("hidden")
+    : enrollmentWarning.classList.add("hidden");
 
   // HANDLE THE SOLO K PLAN (Just one or zero employees, one or two owners (spouse could count as an owner))
   const handleSoloKPlan = (callback) => {

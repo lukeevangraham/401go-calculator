@@ -1,5 +1,5 @@
 body {
-  font-family: "neue-haas-unica", Sans-serif; }
+  font-family: "Lato", Sans-serif; }
 
 .form {
   display: grid;
@@ -33,13 +33,57 @@ body {
   .form__group {
     margin-bottom: 1rem;
     text-align: center; }
-    .form__group__dropdown {
-      background-color: orangered;
-      margin: 5rem; }
-      .form__group__dropdown #planSelected {
-        background-color: orangered;
-        margin: 5rem;
-        display: none; }
+    .form__group__heading {
+      font-weight: 600;
+      display: flex;
+      justify-content: center; }
+    .form__group__dropdown #planSelected {
+      background-color: #eee;
+      margin: 0.5rem;
+      border-radius: 15px;
+      border: none;
+      padding: 0.5rem 1rem;
+      font-family: inherit; }
+    .form__group__slideContainer {
+      margin-bottom: 1.6rem; }
+      .form__group__slideContainer input[type="range"] {
+        width: 500px;
+        outline: 0;
+        border: 0;
+        border-radius: 10px;
+        max-width: 100%;
+        margin: 0.5rem 0;
+        transition: box-shadow 0.2s ease-in-out; }
+        @media screen and (-webkit-min-device-pixel-ratio: 0) {
+          .form__group__slideContainer input[type="range"] {
+            overflow: hidden;
+            height: 22px;
+            -webkit-appearance: none;
+            background-color: #eee; }
+          .form__group__slideContainer input[type="range"]::-webkit-slider-runnable-track {
+            height: 22px;
+            -webkit-appearance: none;
+            color: #2aaae1;
+            transition: box-shadow 0.2s ease-in-out; }
+          .form__group__slideContainer input[type="range"]::-webkit-slider-thumb {
+            width: 22px;
+            -webkit-appearance: none;
+            height: 22px;
+            cursor: ew-resize;
+            background-color: #fff;
+            box-shadow: -340px 0 0 330px #2aaae1, inset 0 0 0 40px #2aaae1;
+            border-radius: 10px;
+            transition: box-shadow 0.2s ease-in-out;
+            position: relative; }
+          .form__group__slideContainer input[type="range"]:active::-webkit-slider-thumb {
+            background: #fff;
+            box-shadow: -340px 0 0 320px #2aaae1 inset 0 0 0 3px #2aaae1; }
+          .form__group__slideContainer input[type="range"]::-moz-range-progress {
+            background-color: #2aaae1; }
+          .form__group__slideContainer input[type="range"]::-moz-range-track {
+            background-color: #9a905d; } }
+      .form__group__slideContainer output {
+        font-weight: 700; }
   .form__radio-input {
     display: none; }
   .form__radio-group {
@@ -56,47 +100,20 @@ body {
     .form__radio-group label:has(input:checked) {
       background-color: #2aaae1;
       color: #eee; }
-  .form__slideContainer {
-    margin-bottom: 1.6rem; }
-    .form__slideContainer input[type="range"] {
-      width: 500px;
-      outline: 0;
-      border: 0;
-      border-radius: 10px;
-      max-width: 100%;
-      margin: 0.5rem 0;
-      transition: box-shadow 0.2s ease-in-out; }
-      @media screen and (-webkit-min-device-pixel-ratio: 0) {
-        .form__slideContainer input[type="range"] {
-          overflow: hidden;
-          height: 22px;
-          -webkit-appearance: none;
-          background-color: #eee; }
-        .form__slideContainer input[type="range"]::-webkit-slider-runnable-track {
-          height: 22px;
-          -webkit-appearance: none;
-          color: #2aaae1;
-          transition: box-shadow 0.2s ease-in-out; }
-        .form__slideContainer input[type="range"]::-webkit-slider-thumb {
-          width: 22px;
-          -webkit-appearance: none;
-          height: 22px;
-          cursor: ew-resize;
-          background-color: #fff;
-          box-shadow: -340px 0 0 330px #2aaae1, inset 0 0 0 40px #2aaae1;
-          border-radius: 10px;
-          transition: box-shadow 0.2s ease-in-out;
-          position: relative; }
-        .form__slideContainer input[type="range"]:active::-webkit-slider-thumb {
-          background: #fff;
-          box-shadow: -340px 0 0 320px #2aaae1 inset 0 0 0 3px #2aaae1; }
-        .form__slideContainer input[type="range"]::-moz-range-progress {
-          background-color: #2aaae1; }
-        .form__slideContainer input[type="range"]::-moz-range-track {
-          background-color: #9a905d; } }
   .form__output {
     display: flex;
     gap: 3rem; }
     .form__output__group {
       display: flex;
       gap: 1rem; }
+  .form__output {
+    font-weight: 700; }
+    .form__output__group {
+      text-transform: uppercase;
+      justify-self: center; }
+
+.hidden {
+  display: none; }
+
+.finePrint {
+  font-size: 12px; }
